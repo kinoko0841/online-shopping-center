@@ -1,0 +1,188 @@
+READ ME FILE
+Name:Tianshu Meng
+ID:8295531684
+Email:tianshum@usc.edu
+Browser:Chrome
+website:http://cs-server.usc.edu:8841/hw3/module.html
+
+Introduction of my homework3:
+This is a website ownered by a foodstore.You can browse food here, even can prucahse if you logged in.
+The task bar is on the top of the website.
+You can retrieve everything you purchased here, and receive the recommendation from website which based on the similar customer.
+A manager can login to this age as well, web will show you the sales condition.
+
+For check fuction, here is the info of users.
++-----------+----------+-----------+---------------+
+| userindex | username | password  | usertype      |
++-----------+----------+-----------+---------------+
+|         1 | cat      | 12345     | customer      |
+|         2 | dog      | 1234567   | administrator | 
+|         3 | lily     | 22936473  | manager       | 
+|         4 | Tom      | tttsss    | administrator | 
+|         5 | brad     | bbbbddd   | administrator |
+|         6 | johnny   | jjjbbb    | administrator |
+|         7 | jb       | jbjbjb    | manager       | 
+|         8 | Angelina | ilovepitt | manager       |
+|        44 | qw       | qw        | manager       | 
+|        45 | a        | a         | administrator | 
++-----------+----------+-----------+---------------+
+
+Strcture of my database:
+In the hw3, I write up 7 tables in my database called "user".
+1.The order table:which stores the buyer and date or every purchase.
++-----------------+-----------+------+-----+---------+----------------+
+| Field           | Type      | Null | Key | Default | Extra          |
++-----------------+-----------+------+-----+---------+----------------+
+| orderid         | int(11)   | NO   | PRI | NULL    | auto_increment |
+| userid          | int(11)   | NO   |     |         |                |
+| totalcost       | float     | NO   |     |         |                |
+| billingaddress  |varchar(20)| NO   |     |         |                |
+| shippingaddress |varchar(20)| NO   |     |         |                |
+| orderdate       |  date     | NO   |     |         |                |
++-----------------+-----------+------+-----+---------+----------------+
+
+2.The orderdetail table:which store the items for every purchase.
++-----------------+---------+------+-----+---------+----------------+
+| Field           | Type    | Null | Key | Default | Extra          |
++-----------------+---------+------+-----+---------+----------------+
+| orderdetailid   | int(11) | NO   | PRI | NULL    | auto_increment |
+| orderid         | int(11) | NO   |     |         |                |
+| productid       | int(11) | NO   |     |         |                |
+| productprice    | float   | NO   |     |         |                |
+| productquantity | int(11) | NO   |     |         |                |
++-----------------+---------+------+-----+---------+----------------+
+3.The product table:store the info of every product
+
++--------------------+-------------+------+-----+---------+----------------+
+| Field              | Type        | Null | Key | Default | Extra          |
++--------------------+-------------+------+-----+---------+----------------+
+| productid          | int(11)     | NO   | PRI | NULL    | auto_increment |
+| productcategoryid  | int(11)     | NO   | MUL |         |                |
+| productname        | varchar(20) | NO   | UNI |         |                |
+| productdescription | text        | NO   |     |         |                |
+| productprice       | float       | NO   |     |         |                |
+| imgurl             | varchar(20) | NO   |     |         |                |
++--------------------+-------------+------+-----+---------+----------------+
+
+4.The productcategory: Store different product categories
+
++----------------------------+-------------+------+-----+---------+----------------+
+| Field                      | Type        | Null | Key | Default | Extra          |
++----------------------------+-------------+------+-----+---------+----------------+
+| productcategoryid          | int(11)     | NO   | PRI | NULL    | auto_increment |
+| productcategoryname        | varchar(20) | NO   | UNI |         |                |
+| productcategorydescription | text        | NO   |     |         |                |
++----------------------------+-------------+------+-----+---------+----------------+
+
+5.The shoppingcart:Store the info of everything you have put into the shoppingcart
+
++-----------------+---------+------+-----+---------+----------------+
+| Field           | Type    | Null | Key | Default | Extra          |
++-----------------+---------+------+-----+---------+----------------+
+| item            | int(11) | NO   | PRI | NULL    | auto_increment |
+| productid       | int(11) | NO   |     |         |                |
+| productquantity | int(11) | NO   |     |         |                |
+| productprice    | float   | NO   |     |         |                |
+| userid          | int(11) | NO   |     |         |                |
+| orderdate       | date    | NO   |     |         |                |
++-----------------+---------+------+-----+---------+----------------+
+
+6.The specialsales:Store the start date and end date of every product which is on sale
++----------------+---------+------+-----+---------+----------------+
+| Field          | Type    | Null | Key | Default | Extra          |
++----------------+---------+------+-----+---------+----------------+
+| specialsalesid | int(11) | NO   | PRI | NULL    | auto_increment |
+| productid      | int(11) | NO   |     |         |                |
+| salesprice     | float   | NO   |     |         |                |
+| startdate      | date    | NO   |     |         |                |
+| enddate        | date    | NO   |     |         |                |
++----------------+---------+------+-----+---------+----------------+
+
+7.The user: Store the user information.
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| userindex | int(11)     | NO   | PRI | NULL    | auto_increment |
+| username  | varchar(20) | NO   | UNI |         |                |
+| password  | text        | NO   |     |         |                |
+| usertype  | text        | NO   |     |         |                |
+| lastname  | text        | NO   |     |         |                |
+| firstname | text        | NO   |     |         |                |
+| age       | int(11)     | NO   |     |         |                |
+| telephone | text        | NO   |     |         |                |
+| email     | text        | NO   |     |         |                |
++-----------+-------------+------+-----+---------+----------------+
+
+Function of my web pages:
+1.module.css
+list all of the styles for the html and php files.
+
+2.module.html
+The homepage of the web.
+
+3.all the jpg files
+used for display every product.
+
+4.addprofile.php
+Create new customer after logged in.
+
+5.addtocart.php
+Add product you selected to the cart
+
+6.changelist.php
+edit shoppingcart by change.
+
+7.changeprofile.php
+edit your profile.
+
+8.checkout.php
+The last step before submit order.
+
+9.deletelist.php
+Edit shopping cart by delete item.
+
+10.displaycategory.php
+Display every product category.
+
+11.displayproduct.php
+Display every product.
+
+12.editprofile.php
+Show your profile.
+
+13.getspecialsales.php
+Show on sale products.
+14.login.php
+Edit for the login bar on the top when you need login.
+
+15.logout.php
+Edit for the login bar on the top when you need logout.
+
+16.order.php
+17.order1.php
+Show orders for the manager.
+
+18.recgood.php
+19.recommand.php
+Show recommendations for customer when you put things into cart.
+
+20.register.php
+Show the login profiles.
+
+21.resetlist.php
+reset your shopping cart.
+
+22.right.php
+Show sales product when you click on certain category.
+
+23.searchorder.php
+Show the item you search by name.
+
+24.shoplist.php
+Show what you purchased before.
+
+25.submitorder.php
+Send your order to the company.
+
+26.viewsummary.php
+Show a summary of what your every purchase.

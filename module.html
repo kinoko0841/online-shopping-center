@@ -1,0 +1,112 @@
+<head>
+<script type="text/javascript" src="jquery-1.11.1.js">
+</script>
+
+<script type="text/javascript" >
+
+function login(){
+//var name = document.getElementById("username");
+//var pw = document.getElementById("password");
+//alert('ª∂”≠π‚¡Ÿ');
+htmlobj=$.ajax({url: "login.php",type: "POST",async:false,
+data:{username:$("#username").val(),password:$("#password").val(),},
+datatype: 'json',
+});
+$("#login").html(htmlobj.responseText);        
+}
+
+function ShowCategory(str){
+var categoryname=str;
+htmlobj=$.ajax({url: "displaycategory.php",type: "POST",async:false,
+data:{category:categoryname},
+
+});
+$("#salesgoods").html(htmlobj.responseText); 
+}
+
+function ShowSpecialCategory()
+{ 
+htmlobj=$.ajax({url: "getspecialsales.php",type: "POST",async:false,
+});
+$("#salesgoods").html(htmlobj.responseText); 
+}
+
+function register(){
+htmlobj=$.ajax({url: "register.php",type: "POST",async:false,
+});
+$("#salesgoods").html(htmlobj.responseText); 
+}
+
+function Showright(a){
+
+htmlobj=$.ajax({url:"right.php",type: "POST",async:false,
+data:{category:a},
+datatype: 'json',
+});
+$(".fixright").html(htmlobj.responseText);
+}
+
+function loginsuccess(){
+//alert("success");
+htmlobj=$.ajax({url:"recommand.php",type: "POST",async:false,
+});
+$("#recommand").html(htmlobj.responseText);
+}
+
+function Showsales(){
+htmlobj=$.ajax({url:"getspecialsales.php",type: "POST",async:false,
+});
+$("#salesgoods").html(htmlobj.responseText);
+}
+
+function searchfrowant(){
+htmlobj=$.ajax({url: "displayproduct.php",type: "POST",async:false,
+data:{productname:$("#want").val()},
+datatype: 'json',
+});
+$("#salesgoods").html(htmlobj.responseText);
+}
+</script>
+<title>foodstore</title>
+<link rel="stylesheet" type="text/css" href="module.css" />
+</head>
+<body onload="ShowSpecialCategory()">
+<div id="login" class="login" style="font-family:Garamond, serif;">
+<span style="float:left;">Welcome to the food shop!</span>
+username:<input type="text" id="username"/>&nbsp;
+password:<input type="password" id="password"/>&nbsp;
+<input type="submit" value="login" onclick="login();loginsuccess()"/>&nbsp;
+<input type="submit" value="New Customer Register" onclick="register()"/>&nbsp;
+</div>
+<div class="back"> 
+<div class="intro">
+<img src="WebBannernew.jpg">
+</div>
+<div class="search">
+<input type="text" id="want" style="width:300px;height:30px"/>
+<input type="submit" value="search for what you want!" style="height:30px" onclick="searchfrowant()">
+</div>
+<div class="content"> 
+	<div class="fixright" > 
+	</div> 
+	<div class="fixleft" >
+	<ul>
+		<li><input class="link" type="button" onclick="ShowCategory('fruits');Showright('fruits')" value="fruits"></li>
+		<li><input class="link"type="button" onclick="ShowCategory('vegetables');Showright('vegetables')" value="vegetables"></li>
+		<li><input class="link"type="button" onclick="ShowCategory('grains');Showright('grains')" value="grains"></li>
+		<li><input class="link"type="button" onclick="ShowCategory('proteinfoods');Showright('proteinfoods')" value="protein foods"></li>
+		<li><input class="link"type="button" onclick="ShowCategory('dairy');Showright('dairy')" value="dairy"></li>
+		<li><input class="link"type="button" onclick="ShowCategory('drinks');Showright('drinks')" value="drinks"></li>
+		<li><input class="link"type="button" onclick="Showsales()" value="sales"></li>
+	</ul>
+	</div> 
+	<div class="floatmiddle">
+	<div>
+	<div id="salesgoods" ></div>
+	<div id="description"></div>
+	<div id='recommand' style='clear:both;margin-top:200px;'></div>
+	</div>
+	</div> 
+</div>
+</div>
+</body>
